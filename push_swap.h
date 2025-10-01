@@ -1,0 +1,30 @@
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft.h"
+
+typedef struct s_stack
+{
+    t_list *a;
+    t_list *b;
+    int     size_a;
+    int     size_b;
+}   t_stack;
+
+int main(int ac, char **av);
+void sa(t_list **s_a);
+void sb(t_list **s_b);
+void ss(t_list **s_a, t_list **s_b);
+void pa(t_list *p_a, t_list **stack_b);
+void pb(t_list *p_b, t_list **stack_a);
+void ra(t_list **r_a);
+void rb(t_list **r_b);
+void rr(t_list **r_a, t_list **t_b);
+void rra(t_list **rr_a);
+void rrb(t_list **rr_b);
+void rrr(t_list **rr_a, t_list **rr_b);
+
+
+# endif
