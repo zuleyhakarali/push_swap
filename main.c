@@ -13,7 +13,7 @@ static void free_s(char **res)
     free(res);
 }
 
-static char **args(int ac, char **av)
+static char **args(int ac, char **av) // 27 satır, düzelt
 {
     char **res;
     int i;
@@ -61,27 +61,27 @@ static int is_accaptable(char *str)
     return (0);
 }
 
-static t_stack *making_stack(char **res)
+static t_list *making_stack(char **res)
 {
     long val;
-    t_stack *a;
-    t_stack *node;
+    t_list *a;
+    t_list *node;
 
+    if (!is_accaptable(*res))
+    {
+        write(2, "Error\n", 6);
+        return (NULL);
+    }
     a = NULL;
     while (*res)
     {
-        if (!is_accaptable(*res))
-        {
-            write(2, "Error\n", 6);
-            return (NULL);
-        }
         val = ft_atoi(*res);
         if (val > 2147483647 || val < -2147483648)
         {
             write(2, "Error\n", 6);
             return (NULL);
         }
-        node = ft_lstnew((int)val);
+        node = ft_lstnew(val);
         if (!node)
             return (NULL);
         ft_lstadd_back(&a, node);
@@ -92,8 +92,8 @@ static t_stack *making_stack(char **res)
 
 int main(int ac, char **av)
 {
-    t_stack *a;
-    t_stack *b;
+    t_list *a;
+    t_list *b;
     char **res;
 
     b = NULL;
@@ -109,7 +109,7 @@ int main(int ac, char **av)
     }
     if (ac == 2 && ft_strchr(av[1], ' '))
         free_s(res);
-
+    sorting(&a, &b);
 
     return (0);
 }

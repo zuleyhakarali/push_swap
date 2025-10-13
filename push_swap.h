@@ -5,14 +5,6 @@
 # include <stdlib.h>
 # include "libft.h"
 
-typedef struct s_stack
-{
-    t_list *a;
-    t_list *b;
-    int     size_a;
-    int     size_b;
-}   t_stack;
-
 int main(int ac, char **av);
 void sa(t_list **s_a);
 void sb(t_list **s_b);
@@ -25,6 +17,7 @@ void rr(t_list **r_a, t_list **t_b);
 void rra(t_list **rr_a);
 void rrb(t_list **rr_b);
 void rrr(t_list **rr_a, t_list **rr_b);
+int sorting(t_list *a, t_list *b);
 
 
 # endif
