@@ -1,10 +1,15 @@
 #include "push_swap.h"
 
+void find_min()
+{
+
+}
+
 void for_three(t_list **a)
 {
-    int fir;
-    int sec;
-    int thi;
+    long fir;
+    long sec;
+    long thi;
 
     fir = (*a)->content;
     sec = (*a)->next->content;
@@ -14,13 +19,13 @@ void for_three(t_list **a)
         sa(a);
         rra(a);
     }
-    if (fir > thi && thi > sec)
+    else if (fir > thi && thi > sec)
         ra(a);
-    if (sec > fir && fir > thi)
+    else if (sec > fir && fir > thi)
         rra(a);
-    if (thi > fir && fir > sec)
+    else if (thi > fir && fir > sec) 
         sa(a);
-    if (sec > thi && thi > fir)
+    else if (sec > thi && thi > fir) 
     {
         sa(a);
         ra(a);
@@ -87,17 +92,17 @@ void sorting(t_list **a, t_list **b)
 {
     int i;
 
-    i = ft_lstsize(a);
+    i = ft_lstsize(*a);
     if (i == 2)
     {
         if ((*a)->content > (*a)->next->content)
             sa(a);
     }
-    if (i == 3)
+    else if (i == 3)
         for_three(a);
-    if (i == 4)
+    else if (i == 4)
         for_four(a, b);
-    if (i == 5)
+    else if (i == 5)
         for_five(a, b);
     else
         big_sort(a, b);

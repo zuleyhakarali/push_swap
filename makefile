@@ -1,27 +1,25 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Ilibftwbonus
+CFLAGS = -Wall -Wextra -Werror -I../libft
 
-SRC = main.c
+SRC = main.c utils.c little_sort.c op_push.c op_rotate.c op_rewrotate.c op_swap.c big_sort.c
 OBJS = $(SRC:.c=.o)
 
-LIBFT = libftwbonus/libft.a
+LIBFT = ../libft/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS)
+	make -C ../libft
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
-
-$(LIBFT):
-	make -C libftwbonus
 
 clean:
 	rm -f $(OBJS)
-	make -C libftwbonus clean
-	make -C libftwbonus fclean
+	make -C ../libft clean
 
 fclean: clean
 	rm -f $(NAME)
+	make -C ../libft fclean
 
 re: fclean all
 

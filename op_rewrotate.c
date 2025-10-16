@@ -4,20 +4,14 @@ static void rewrotate(t_list **stack)
 {
     t_list *res;
     t_list *list;
-    t_list *tmp;
 
-    if (!(*stack) ||!(*stack)->next)
+    if (!(*stack) || !(*stack)->next)
         return;
     list = *stack;
-    while (list->next != NULL)
-    {
-        if (list->next->next == NULL)
-            tmp = list;
-        else
-            list = list->next;
-    }
-    res = tmp->next;
-    tmp->next = NULL;
+    while (list->next->next != NULL)
+        list = list->next;
+    res = list->next;
+    list->next = NULL;
     res->next = *stack;
     *stack = res;
 }

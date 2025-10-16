@@ -9,6 +9,7 @@ static void  swap(t_list **stack)
     res = *stack;
     *stack = (*stack)->next;
     (*stack)->next = res;
+    res->next = NULL;
 }
 
 void sa(t_list **s_a)

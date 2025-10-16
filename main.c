@@ -35,9 +35,8 @@ static char **args(int ac, char **av) // 27 satır, düzelt
     }
     else
         res = &av[1];
-    if (repeated_numbers(res))
+    if (!repeating_numbers(res))
     {
-        write(2, "Error\n", 6);
         if (ac == 2 && ft_strchr(av[1], ' '))
             free_s(res);
         return (NULL);
@@ -67,14 +66,14 @@ static t_list *making_stack(char **res)
     t_list *a;
     t_list *node;
 
-    if (!is_accaptable(*res))
-    {
-        write(2, "Error\n", 6);
-        return (NULL);
-    }
     a = NULL;
     while (*res)
     {
+        if (!is_accaptable(*res))
+        {
+            write(2, "Error\n", 6);
+            return (NULL);
+        }
         val = ft_atoi(*res);
         if (val > 2147483647 || val < -2147483648)
         {
@@ -100,6 +99,11 @@ int main(int ac, char **av)
     if (ac == 1)
         return (0);
     res = args(ac, av);
+    if (!res || !*res)
+    {
+        write(2, "Error\n", 6);
+        return (0);
+    }
     a = making_stack(res);
     if (!a)
     {
