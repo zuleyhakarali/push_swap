@@ -114,6 +114,6 @@ int main(int ac, char **av)
     if (ac == 2 && ft_strchr(av[1], ' '))
         free_s(res);
     sorting(&a, &b);
-
+    
     return (0);
 }

@@ -56,17 +56,16 @@ void for_four(t_list **a, t_list **b)
     int i;
     int idx;
 
-    idx = 0;
     idx = find_min_idx(a);
     i = ft_lstsize(*a);
-    if (idx <= i - idx)
+    if (idx <= i / 2)
     {
         while (idx-- > 0)
             ra(a);
     }
     else
     {
-        while (idx++ < i)
+        while (idx++ < i) //
             rra(a);
     }
     pb(b, a);
@@ -81,14 +80,14 @@ void for_five(t_list **a, t_list **b)
 
     i = ft_lstsize(*a);
     idx = find_min_idx(a);
-    if (idx <= i - idx)
+    if (idx <= i / 2)
     {
         while (idx-- > 0)
             ra(a);
     }
     else
     {
-        while (idx++ < i)
+        while (idx++ < i - 1) // düzeltilebilir
             rra(a);
     }
     pb(b, a);
@@ -113,5 +112,5 @@ void sorting(t_list **a, t_list **b)
     else if (i == 5)
         for_five(a, b);
     else
-        big_sort(a, b);
+        big_sort(a, b, i);
 }

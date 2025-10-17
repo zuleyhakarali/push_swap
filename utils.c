@@ -20,4 +20,3 @@ int repeating_numbers(char **res)
     return (1);
 }
 
- 
