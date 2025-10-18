@@ -1,70 +1,82 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   index.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/18 12:50:17 by zkarali           #+#    #+#             */
+/*   Updated: 2025/10/18 18:32:45 by zkarali          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void in_place_sort(int size, int *arr)
+static void	in_place_sort(int size, int *arr)
 {
-    int i;
-    int j;
-    int tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
-    i = 0;
-    while (i < size - 1)
-    {
-        j = 0;
-        while (j < size - i - 1)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                tmp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = tmp;
-            }
-            j++;
-        }
-        i++;
-    }
+	i = 0;
+	while (i < size - 1)
+	{
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
-static void arr_to_idx(int size, int *arr, t_list **stack)
+static void	arr_to_idx(int size, int *arr, t_list **stack)
 {
-    int i;
-    t_list *tmp;
+	int		i;
+	t_list	*tmp;
 
-    tmp = (*stack);
-    while (tmp)
-    {
-        i = 0;
-        while (i < size)
-        {
-            if (tmp->content == arr[i])
-            {
-                tmp->index = i;
-                break;
-            }
-            i++;
-        }
-        tmp = tmp->next;
-    }
+	tmp = (*stack);
+	while (tmp)
+	{
+		i = 0;
+		while (i < size)
+		{
+			if (tmp->content == arr[i])
+			{
+				tmp->index = i;
+				break ;
+			}
+			i++;
+		}
+		tmp = tmp->next;
+	}
 }
 
-void indexing(t_list **stack)
+void	indexing(t_list **stack)
 {
-    int *arr;
-    int size;
-    int i;
-    t_list *tmp;
+	int		*arr;
+	int		size;
+	int		i;
+	t_list	*tmp;
 
-    size = ft_lstsize(*stack);
-    arr = malloc(size * sizeof(int));
-    if (!arr)
-        return;
-    tmp = (*stack);
-    i = 0;
-    while (tmp)
-    {
-        arr[i++] = tmp->content;
-        tmp = tmp->next;
-    }
-    in_place_sort(size, arr);
-    arr_to_idx(size, arr, stack);
-    free(arr);
+	size = ft_lstsize(*stack);
+	arr = malloc(size * sizeof(int));
+	if (!arr)
+		return ;
+	tmp = (*stack);
+	i = 0;
+	while (tmp)
+	{
+		arr[i++] = tmp->content;
+		tmp = tmp->next;
+	}
+	in_place_sort(size, arr);
+	arr_to_idx(size, arr, stack);
+	free(arr);
 }
