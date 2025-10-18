@@ -5,6 +5,8 @@ static void free_s(char **res)
     int i;
 
     i = 0;
+    if (!res)
+        return;
     while (res[i])
     {
         free(res[i]);
@@ -13,26 +15,12 @@ static void free_s(char **res)
     free(res);
 }
 
-static char **args(int ac, char **av) // 27 satır, düzelt
+static char **args(int ac, char **av)
 {
     char **res;
-    int i;
 
-    i = 0;
-    if (ac == 2)
-    {
-        while (av[1][i])
-        {
-            if (av[1][i] == ' ')
-            {
-                res = ft_split(av[1], ' ');
-                break;
-            }
-            i++;
-        }
-        if (!av[1][i])
-            res = &av[1];
-    }
+    if (ac == 2 && ft_strchr(av[1], ' '))
+        res = ft_split(av[1], ' ');
     else
         res = &av[1];
     if (!repeating_numbers(res))
@@ -44,7 +32,7 @@ static char **args(int ac, char **av) // 27 satır, düzelt
     return (res);
 }
 
-static int is_accaptable(char *str)
+static int is_acceptable(char *str)
 {
     int i;
 
@@ -69,20 +57,20 @@ static t_list *making_stack(char **res)
     a = NULL;
     while (*res)
     {
-        if (!is_accaptable(*res))
+        if (!is_acceptable(*res))
         {
             write(2, "Error\n", 6);
-            return (NULL);
+            return (ft_lstclear(&a, free), NULL);
         }
         val = ft_atoi(*res);
         if (val > 2147483647 || val < -2147483648)
         {
             write(2, "Error\n", 6);
-            return (NULL);
+            return (ft_lstclear(&a, free), free);
         }
         node = ft_lstnew(val);
         if (!node)
-            return (NULL);
+            return (ft_lstclear(&a, free), NULL);
         ft_lstadd_back(&a, node);
         res++;
     }
@@ -105,15 +93,9 @@ int main(int ac, char **av)
         return (0);
     }
     a = making_stack(res);
-    if (!a)
-    {
-        if (ac == 2 && ft_strchr(av[1], ' '))
-            free_s(res);
-        return (1);
-    }
     if (ac == 2 && ft_strchr(av[1], ' '))
         free_s(res);
     sorting(&a, &b);
-    
+    ft_lstclear(&a, free);
     return (0);
 }

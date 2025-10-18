@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int biggest_min(t_list **b, int a_val)
+static int biggest_min(t_list **b, int a_val)
 {
     t_list *tmp;
     int min;
@@ -30,7 +30,7 @@ int biggest_min(t_list **b, int a_val)
     return (min);
 }
 
-int find_idx(t_list **b, int big_min)
+static int find_idx(t_list **b, int big_min)
 {
     t_list *tmp;
     int i;
@@ -47,77 +47,44 @@ int find_idx(t_list **b, int big_min)
     return (-1);
 }
 
-int cost_for_b(t_list *node, t_list **a, t_list **b, int size_a, int size_b)
+static void placement(t_list **a, t_list **b, t_list *chosen, 
+                        int size_a, int size_b)
 {
-    int big_min;
-    int idx_a;
-    int idx_b;
-    int val;
-
-    val = node->index;
-    big_min = biggest_min(b, val);
-    idx_b = find_idx(b, big_min);
-    if (idx_b == -1)
-        idx_b = 0;
-    idx_a = find_idx(a, val);
-    if (idx_a > size_a / 2)
-        idx_a = size_a - idx_a;
-    if (idx_b > size_b / 2)
-        idx_b = size_b - idx_b;
-    return (idx_a + idx_b);
-}
-
-int find_pos(t_list **a, int idx)
-{
-    int i;
-    t_list *tmp;
-
-    i = 0;
-    tmp = (*a);
-    while (tmp)
-    {
-        if (tmp->index == idx)
-            return (i);
-        tmp = tmp->next;
-        i++;
-    }
-    return (-1);
-}
-
-void placement(t_list **a, t_list **b, t_list *chosen, int size_a, int size_b)
-{
-    int big_m;
     int pos_a;
     int pos_b;
 
     pos_a = find_pos(a, chosen->index);
-    big_m = biggest_min(b, chosen->index);
-    pos_b = find_idx(b, big_m);
+    pos_b = find_idx(b, biggest_min(b, chosen->index));
     if (pos_a < size_a / 2 && pos_b < size_b / 2)
-        rr(a, b);
+        while (pos_a-- > 0 && pos_b-- > 0)
+            rr(a, b);
     else if (pos_a >= size_a / 2 && pos_b >= size_b / 2)
-        rrr(a, b);
+        while (pos_a-- > 0 && pos_b-- > 0)
+            rrr(a, b);
     else if (pos_a < size_a / 2 && pos_b >= size_b / 2)
     {
-        ra(a);
-        rrb(b);
+        while (pos_a-- > 0)
+            ra(a);
+        while (pos_b-- > 0)
+            rrb(b);
     }
     else
     {
-        rra(a);
-        rb(b);
+        while (pos_a-- > 0)
+            rra(a);
+        while (pos_b-- > 0)
+            rb(b);
     }
 }
 
-void best_move(t_list **a, t_list **b, int size_a, int size_b)
+static void best_move(t_list **a, t_list **b, int size_a, int size_b)
 {
     int cost1;
     int cost2;
     t_list *tmp;
     t_list *chosen;
 
-    if (!a || !*a || !b)
-        return;
+    chosen = NULL;
     cost2 = 2147483647;
     tmp = (*a);
     while (tmp)
@@ -147,12 +114,13 @@ void big_sort(t_list **a, t_list **b, int size_a)
     pb(b, a);
     size_a -= 2;
     size_b += 2;
-    while (size_a > 0)
+    while (size_a > 3)
     {
         best_move(a, b, size_a, size_b);
         size_a--;
         size_b++;
     }
+    for_three(a);
     while (*b)
         pa(a, b);
     tmp = (*a);

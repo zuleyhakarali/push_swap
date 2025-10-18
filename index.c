@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int *bubble_sort(int size, int *arr)
+static void in_place_sort(int size, int *arr)
 {
     int i;
     int j;
@@ -22,10 +22,9 @@ int *bubble_sort(int size, int *arr)
         }
         i++;
     }
-    return (arr);
 }
 
-void arr_to_idx(int size, int *arr, t_list **stack)
+static void arr_to_idx(int size, int *arr, t_list **stack)
 {
     int i;
     t_list *tmp;
@@ -65,7 +64,7 @@ void indexing(t_list **stack)
         arr[i++] = tmp->content;
         tmp = tmp->next;
     }
-    bubble_sort(size, arr);
+    in_place_sort(size, arr);
     arr_to_idx(size, arr, stack);
     free(arr);
 }

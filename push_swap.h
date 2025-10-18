@@ -3,7 +3,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libftwbonus/libft.h"
+# include "../libft/libft.h"
 
 int main(int ac, char **av);
 int repeating_numbers(char **res);
@@ -23,5 +23,7 @@ void for_three(t_list **a);
 void for_four(t_list **a, t_list **b);
 void for_five(t_list **a, t_list **b);
 void big_sort(t_list **a, t_list **b, int size_a);
+int cost_for_b(t_list *node, t_list **a, t_list **b, int size_a, int size_b);
+int find_pos(t_list **a, int idx);
 
 # endif
