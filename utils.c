@@ -12,15 +12,6 @@
 
 #include "push_swap.h"
 
-void	is_sorted(t_list **b)
-{
-	t_list	*tmp;
-
-	tmp = (*b);
-	if (tmp->index < tmp->next->index)
-		rb(b);
-}
-
 // for main.c;
 
 int	repeating_numbers(char **res)

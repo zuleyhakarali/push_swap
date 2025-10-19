@@ -29,3 +29,30 @@ int	smallest_max(t_list **a, int b_val) //26 satır diyor
 	}
 	return (max);
 }
+
+void best_move_b(t_list **a, t_list **b, int size_b)
+{
+	int max;
+	int b_max;
+	int rep;
+	t_list *tmp;
+
+	tmp = (*b);
+	max = tmp->index;
+	while (tmp)
+	{
+		if (max < tmp->index)
+			max = tmp->index;
+		tmp = tmp->next;
+	}
+	b_max = find_pos(b, max);
+	if (b_max > size_b / 2)
+	{
+		rep = size_b - b_max;
+		while (rep-- > 0)
+			rrb(b);
+	}
+	else
+		while (b_max-- > 0)
+			rb(b);
+}

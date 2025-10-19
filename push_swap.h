@@ -53,10 +53,10 @@ int		biggest_min(t_list **b, int a_val);
 int		find_idx(t_list **b, int big_min);
 void	indexing(t_list **stack);
 void	for_exit(t_list *a);
-void	is_sorted(t_list **b);
 int	smallest_max(t_list **b, int a_val);
 void	placement(t_list **a, t_list **b, t_list *chosen, int size_a, int size_b);
 void    placement_b(t_list **a, t_list **b, int target_idx, int size_a);
-void    best_move_b(t_list **a, t_list **b, int size_a);
+void    best_move_b(t_list **a, t_list **b, int size_b);
+int	find_min_idx(t_list **a);
 
 #endif

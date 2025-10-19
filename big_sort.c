@@ -117,6 +117,8 @@ static void	best_move(t_list **a, t_list **b, int size_a, int size_b)
 void	big_sort(t_list **a, t_list **b, int size_a)
 {
 	int		size_b;
+    int     smallest;
+    int     rep;
 	t_list	*tmp;
 
 	size_b = 0;
@@ -132,16 +134,21 @@ void	big_sort(t_list **a, t_list **b, int size_a)
 		size_b++;
 	}
 	for_three(a);
-	is_sorted(b);
 	while (*b)
 	{
-		best_move_b(a, b, size_a);
+		best_move_b(a, b, size_b);
 		size_a++;
     	size_b--;
 	}
-	tmp = (*a);
-	while (tmp->next != NULL)
-		tmp = tmp->next;
-	while ((*a)->index > tmp->index)
-		rra(a);
+	smallest = find_min_idx(a);
+    if (smallest > size_a / 2)
+    {
+        rep = size_a - smallest;
+        while (rep-- > 0)
+            rra(a);
+    }
+    else
+        while (smallest-- > 0)
+            ra(a);
 }
+

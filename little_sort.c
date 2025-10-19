@@ -39,7 +39,7 @@ void	for_three(t_list **a)
 	}
 }
 
-static int	find_min_idx(t_list **a)
+int	find_min_idx(t_list **a)
 {
 	int		i;
 	int		idx;
