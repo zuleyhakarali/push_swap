@@ -12,8 +12,6 @@
 
 #include "push_swap.h"
 
-// for main.c;
-
 int	repeating_numbers(char **res)
 {
 	int	i;
@@ -41,22 +39,31 @@ void	for_exit(t_list *a)
 	exit(1);
 }
 
-// for big_sort.c;
-
-int	cost_for_b(t_list *node, t_list **a, t_list **b)
+int	cost_for_b(t_list *chosen, t_list **a, t_list **b, int size_a, int size_b)
 {
-	int	big_min;
-	int	idx_a;
-	int	idx_b;
-	int	val;
+	int idx_a = find_idx(a, biggest_min(a, chosen->index));
+	int idx_b = find_pos(b, chosen->index);
+	int ra_c = idx_a;
+	int rra_c = size_a - idx_a;
+	int rb_c = idx_b;
+	int rrb_c = size_b - idx_b;
+	int cost1;
+	int cost2;
+	int cost3;
+	int cost4;
+	int res1;
+	int res2;
 
-	val = node->index;
-	big_min = biggest_min(b, val);
-	idx_b = find_idx(b, big_min);
-	if (idx_b == -1)
-		idx_b = 0;
-	idx_a = find_idx(a, val);
-	return (idx_a + idx_b);
+	cost1 = (ra_c > rb_c) ? ra_c : rb_c;
+	cost2 = (rra_c > rrb_c) ? rra_c : rrb_c;
+	cost3 = ra_c + rrb_c;
+	cost4 = rb_c + rra_c;
+	res1 = (cost1 > cost2) ? cost2 : cost1;
+	res2 = (cost3 > cost4) ? cost4 : cost3;
+	if (res1 < res2)
+		return (res1);
+	else 
+		return (res2);
 }
 
 int	find_pos(t_list **a, int idx)

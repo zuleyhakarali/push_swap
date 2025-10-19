@@ -21,7 +21,9 @@ void	for_three(t_list **a)
 	fir = (*a)->content;
 	sec = (*a)->next->content;
 	thi = (*a)->next->next->content;
-	if (fir > sec && sec > thi)
+	if (thi > sec && sec > fir)
+		return ;
+	else if (fir > sec && sec > thi)
 	{
 		sa(a);
 		rra(a);
@@ -66,6 +68,7 @@ int	find_min_idx(t_list **a)
 static void	for_four(t_list **a, t_list **b, int i)
 {
 	int	idx;
+	int ret;
 
 	idx = find_min_idx(a);
 	if (idx <= i / 2)
@@ -75,13 +78,13 @@ static void	for_four(t_list **a, t_list **b, int i)
 	}
 	else
 	{
-		while (idx++ < i - 1)
+		ret = i - idx;
+		while (ret-- > 0)
 			rra(a);
 	}
 	pb(b, a);
 	for_three(a);
 	pa(a, b);
-	exit(0);
 }
 
 void	sorting(t_list **a, t_list **b)

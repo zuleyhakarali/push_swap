@@ -59,7 +59,7 @@ int	find_idx(t_list **b, int big_min)
 	return (-1);
 }
 
-void	placement(t_list **a, t_list **b, t_list *chosen, int size_a, int size_b)
+static void	placement(t_list **a, t_list **b, t_list *chosen, int size_a, int size_b)
 {
 	int	pos_a;
 	int	pos_b;
@@ -100,7 +100,7 @@ static void	best_move(t_list **a, t_list **b, int size_a, int size_b)
 	tmp = (*a);
 	while (tmp)
 	{
-		cost1 = cost_for_b(tmp, a, b);
+		cost1 = cost_for_b(tmp, a, b, size_a, size_b);
 		if (cost1 < cost2)
 		{
 			cost2 = cost1;
@@ -119,7 +119,6 @@ void	big_sort(t_list **a, t_list **b, int size_a)
 	int		size_b;
     int     smallest;
     int     rep;
-	t_list	*tmp;
 
 	size_b = 0;
 	indexing(a);
@@ -136,9 +135,7 @@ void	big_sort(t_list **a, t_list **b, int size_a)
 	for_three(a);
 	while (*b)
 	{
-		best_move_b(a, b, size_b);
-		size_a++;
-    	size_b--;
+		best_move_b(a, b);
 	}
 	smallest = find_min_idx(a);
     if (smallest > size_a / 2)
