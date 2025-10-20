@@ -21,6 +21,7 @@ void	for_three(t_list **a)
 	fir = (*a)->content;
 	sec = (*a)->next->content;
 	thi = (*a)->next->next->content;
+	
 	if (thi > sec && sec > fir)
 		return ;
 	else if (fir > sec && sec > thi)
@@ -104,6 +105,8 @@ void	sorting(t_list **a, t_list **b)
 		for_three(a);
 	else if (i == 4)
 		for_four(a, b, i);
+	else if (i < 8)
+		for_little(a, b);
 	else
-		big_sort(a, b, i);
+		big_sort(a, b);
 }

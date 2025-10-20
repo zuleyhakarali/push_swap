@@ -1,151 +1,47 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   big_sort.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/18 12:50:21 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/18 20:42:55 by zkarali          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-int	biggest_min(t_list **a, int b_val) //26 satır diyor
+int maximum(t_list **a)
 {
-	t_list	*tmp;
-	int		min;
+    int max_idx;
+    int max_bit;
+    t_list *tmp;
 
-	min = -2147483647;
-	tmp = (*a);
-	while (tmp)
-	{
-		if (b_val > tmp->index)
-		{
-			if (min < tmp->index)
-				min = tmp->index;
-		}
-		tmp = tmp->next;
-	}
-	if (min == -2147483647)
-	{
-		tmp = (*a);
-		min = tmp->index;
-		while (tmp)
-		{
-			if (tmp->index > min)
-				min = tmp->index;
-			tmp = tmp->next;
-		}
-	}
-	return (min);
-}
-
-int	find_idx(t_list **b, int big_min)
-{
-	t_list	*tmp;
-	int		i;
-
-	tmp = (*b);
-	i = 0;
-	while (tmp)
-	{
-		if (tmp->index == big_min)
-			return (i);
-		tmp = tmp->next;
-		i++;
-	}
-	return (-1);
-}
-
-static void	placement(t_list **a, t_list **b, t_list *chosen, int size_a, int size_b)
-{
-	int	pos_a;
-	int	pos_b;
-
-	pos_a = find_pos(a, chosen->index);
-	pos_b = find_idx(b, biggest_min(b, chosen->index));
-	if (pos_a < size_a / 2 && pos_b < size_b / 2)
-		while (pos_a-- > 0 && pos_b-- > 0)
-			rr(a, b);
-	else if (pos_a >= size_a / 2 && pos_b >= size_b / 2)
-		while (pos_a-- > 0 && pos_b-- > 0)
-			rrr(a, b);
-	else if (pos_a < size_a / 2 && pos_b >= size_b / 2)
-	{
-		while (pos_a-- > 0)
-			ra(a);
-		while (pos_b-- > 0)
-			rrb(b);
-	}
-	else
-	{
-		while (pos_a-- > 0)
-			rra(a);
-		while (pos_b-- > 0)
-			rb(b);
-	}
-}
-
-static void	best_move(t_list **a, t_list **b, int size_a, int size_b)
-{
-	int		cost1;
-	int		cost2;
-	t_list	*tmp;
-	t_list	*chosen;
-
-	chosen = NULL;
-	cost2 = 2147483647;
-	tmp = (*a);
-	while (tmp)
-	{
-		cost1 = cost_for_b(tmp, a, b, size_a, size_b);
-		if (cost1 < cost2)
-		{
-			cost2 = cost1;
-			chosen = tmp;
-		}
-		tmp = tmp->next;
-	}
-	if (!chosen)
-		return ;
-	placement(a, b, chosen, size_a, size_b);
-	pb(b, a);
-}
-
-void	big_sort(t_list **a, t_list **b, int size_a)
-{
-	int		size_b;
-    int     smallest;
-    int     rep;
-
-	size_b = 0;
-	indexing(a);
-	pb(b, a);
-	pb(b, a);
-	size_a -= 2;
-	size_b += 2;
-	while (size_a > 3)
-	{
-		best_move(a, b, size_a, size_b);
-		size_a--;
-		size_b++;
-	}
-	for_three(a);
-	while (*b)
-	{
-		best_move_b(a, b);
-	}
-	smallest = find_min_idx(a);
-    if (smallest > size_a / 2)
+    max_idx = -2147483648;
+    tmp = *a;
+    while (tmp)
     {
-        rep = size_a - smallest;
-        while (rep-- > 0)
-            rra(a);
+        if (tmp->index > max_idx)
+            max_idx = tmp->index;
+        tmp = tmp->next;
     }
-    else
-        while (smallest-- > 0)
-            ra(a);
+    max_bit = 0;
+    while ((max_idx >> max_bit) != 0)
+        max_bit++;
+    return (max_bit);
 }
 
+void	big_sort(t_list **a, t_list **b)
+{
+    int     max_bit;
+    int     i;
+    int     size_a;
+
+	indexing(a);
+    max_bit = maximum(a);
+    i = 0;
+    while (i < max_bit)
+    {
+        size_a = ft_lstsize(*a);
+        while (size_a > 0)
+        {
+            if ((((*a)->index >> i) & 1) == 1)
+                ra(a);
+            else
+                pb(b, a);
+            size_a--;
+        }
+        while (ft_lstsize(*b)> 0)
+            pa(a, b);
+        i++;
+    }
+}

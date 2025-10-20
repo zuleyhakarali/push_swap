@@ -14,14 +14,16 @@
 
 static void	swap(t_list **stack)
 {
-	t_list	*res;
+	t_list	*fir;
+	t_list *sec;
 
 	if (!(*stack) || !((*stack)->next))
 		return ;
-	res = *stack;
-	*stack = (*stack)->next;
-	(*stack)->next = res;
-	res->next = NULL;
+	fir = *stack;
+	sec = (*stack)->next;
+	fir->next = sec->next;
+	sec->next = fir;
+	*stack = sec;
 }
 
 void	sa(t_list **s_a)
