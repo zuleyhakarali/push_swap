@@ -53,7 +53,7 @@ int	find_min_idx(t_list **a)
 	idx = 0;
 	min = (*a)->content;
 	tmp = *a;
-	while (tmp != NULL)
+	while (tmp)
 	{
 		if (min > tmp->content)
 		{
@@ -68,19 +68,19 @@ int	find_min_idx(t_list **a)
 
 static void	for_four(t_list **a, t_list **b, int i)
 {
-	int	idx;
-	int ret;
+	int	min;
+	int res;
 
-	idx = find_min_idx(a);
-	if (idx <= i / 2)
+	min = find_min_idx(a);
+	if (min <= i / 2)
 	{
-		while (idx-- > 0)
+		while (min-- > 0)
 			ra(a);
 	}
 	else
 	{
-		ret = i - idx;
-		while (ret-- > 0)
+		res = i - min;
+		while (res-- > 0)
 			rra(a);
 	}
 	pb(b, a);
@@ -105,8 +105,8 @@ void	sorting(t_list **a, t_list **b)
 		for_three(a);
 	else if (i == 4)
 		for_four(a, b, i);
-	else if (i < 8)
-		for_little(a, b);
+	else if (i < 25)
+		for_little_nums(a, b, i);
 	else
-		big_sort(a, b);
+		big_sort(a, b, i);
 }

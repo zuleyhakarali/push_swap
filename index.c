@@ -58,14 +58,12 @@ static void	arr_to_idx(int size, int *arr, t_list **stack)
 	}
 }
 
-void	indexing(t_list **stack)
+void	indexing(t_list **stack, int size)
 {
 	int		*arr;
-	int		size;
 	int		i;
 	t_list	*tmp;
 
-	size = ft_lstsize(*stack);
 	arr = malloc(size * sizeof(int));
 	if (!arr)
 		return ;

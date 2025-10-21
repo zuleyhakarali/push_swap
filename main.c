@@ -12,19 +12,24 @@
 
 #include "push_swap.h"
 
-void	free_s(char **res)
+static int	repeating_numbers(char **res)
 {
 	int	i;
+	int	j;
 
 	i = 0;
-	if (!res)
-		return ;
 	while (res[i])
 	{
-		free(res[i]);
+		j = i + 1;
+		while (res[j])
+		{
+			if (ft_atoi(res[i]) == ft_atoi(res[j]))
+				return (0);
+			j++;
+		}
 		i++;
 	}
-	free(res);
+	return (1);
 }
 
 static char	**args(int ac, char **av)
@@ -54,10 +59,7 @@ static int	is_acceptable(char *str)
 	if (!str[i])
 		return (0);
 	while (str[i] >= '0' && str[i] <= '9')
-	//{
-		//if ()
 		i++;
-	//}
 	if (!str[i])
 		return (1);
 	return (0);

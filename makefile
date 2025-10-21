@@ -2,7 +2,8 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c utils.c little_sort.c op_push.c op_rotate.c op_rewrotate.c op_swap.c big_sort.c index.c libft.c for_little.c
+SRC = main.c free_and_exit.c little_sort.c op_push.c op_rotate.c op_rewrotate.c\
+	op_swap.c big_sort.c index.c for_little.c libft.c
 OBJS = $(SRC:.c=.o)
 
 all: $(NAME)

@@ -36,15 +36,15 @@ void	rrb(t_list **rr_b);
 void	rrr(t_list **rr_a, t_list **rr_b);
 
 int		main(int ac, char **av);
-int		repeating_numbers(char **res);
+void	free_s(char **res);
+void	for_exit(t_list *a);
 
 void	sorting(t_list **a, t_list **b);
 void	for_three(t_list **a);
-void    for_little(t_list **a, t_list **b);
+void    for_little_nums(t_list **a, t_list **b, int size_a);
 
-void	big_sort(t_list **a, t_list **b);
-void	indexing(t_list **stack);
-void	for_exit(t_list *a);
+void	indexing(t_list **stack, int size);
+void	big_sort(t_list **a, t_list **b, int size_a);
 
 int     ft_lstsize(t_list *lst);
 char	*ft_strchr(const char *s, int c);

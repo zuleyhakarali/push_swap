@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int maximum(t_list **a)
+static int calculate_max_bit(t_list **a)
 {
     int max_idx;
     int max_bit;
@@ -20,25 +20,25 @@ int maximum(t_list **a)
     return (max_bit);
 }
 
-void	big_sort(t_list **a, t_list **b)
+void	big_sort(t_list **a, t_list **b, int size_a)
 {
     int     max_bit;
     int     i;
-    int     size_a;
+    int     s_a;
 
-	indexing(a);
-    max_bit = maximum(a);
+	indexing(a, size_a);
+    max_bit = calculate_max_bit(a);
     i = 0;
     while (i < max_bit)
     {
-        size_a = ft_lstsize(*a);
-        while (size_a > 0)
+        s_a = size_a;
+        while (s_a > 0)
         {
             if ((((*a)->index >> i) & 1) == 1)
                 ra(a);
             else
                 pb(b, a);
-            size_a--;
+            s_a--;
         }
         while (ft_lstsize(*b)> 0)
             pa(a, b);

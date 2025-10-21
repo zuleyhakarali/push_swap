@@ -12,24 +12,19 @@
 
 #include "push_swap.h"
 
-int	repeating_numbers(char **res)
+void	free_s(char **res)
 {
 	int	i;
-	int	j;
 
 	i = 0;
+	if (!res)
+		return ;
 	while (res[i])
 	{
-		j = i + 1;
-		while (res[j])
-		{
-			if (ft_atoi(res[i]) == ft_atoi(res[j]))
-				return (0);
-			j++;
-		}
+		free(res[i]);
 		i++;
 	}
-	return (1);
+	free(res);
 }
 
 void	for_exit(t_list *a)
