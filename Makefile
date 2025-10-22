@@ -7,7 +7,7 @@ SRC = main.c utils.c little_sort.c op_push.c op_rotate.c op_rewrotate.c\
 
 OBJS = $(SRC:.c=.o)
 
-LIB_DIR = ../libft
+LIB_DIR = libft
 LIB = $(LIB_DIR)/libft.a
 
 all: $(LIB) $(NAME)

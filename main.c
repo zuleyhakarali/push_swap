@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:07 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/22 15:57:00 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/22 19:50:02 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,6 @@ static int	repeating_numbers(char **res)
 	return (1);
 }
 
-static char	**args(int ac, char **av)
-{
-	char	**res;
-
-	if (ac == 2 && ft_strchr(av[1], ' '))
-		res = ft_split(av[1], ' ');
-	else
-		res = &av[1];
-	if (!repeating_numbers(res))
-	{
-		if (ac == 2 && ft_strchr(av[1], ' '))
-			free_s(res);
-		return (NULL);
-	}
-	return (res);
-}
-
 static int	is_acceptable(char *str)
 {
 	int	i;
@@ -65,25 +48,46 @@ static int	is_acceptable(char *str)
 	return (0);
 }
 
+static char	**args(int ac, char **av)
+{
+	char	**res;
+	
+	if (!is_acceptable(av[1]))
+		return (NULL);
+	if (ac == 2 && ft_strchr(av[1], ' '))
+		res = ft_split(av[1], ' ');
+	else
+		res = &av[1];
+	if (!repeating_numbers(res))
+	{
+		if (ac == 2 && ft_strchr(av[1], ' '))
+			free_s(res);
+		return (NULL);
+	}
+	return (res);
+}
+
 static t_stack	*making_stack(char **res)
 {
 	long	val;
 	t_stack	*a;
 	t_stack	*node;
+	int		i;
 
+	i = 0;
 	a = NULL;
-	while (*res)
+	while (res[i])
 	{
-		if (!is_acceptable(*res))
-			for_exit(a);
-		val = ft_atoi(*res);
+		val = ft_atoi(res[i]);
 		if (val > 2147483647 || val < -2147483648)
 			for_exit(a);
 		node = lstnew(val);
 		if (!node)
 			for_exit(a);
 		lstadd_back(&a, node);
-		res++;
+		if (!is_acceptable(res[i]))
+			for_exit(a);
+		i++;
 	}
 	return (a);
 }
