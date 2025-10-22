@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:49:47 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/18 18:30:52 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/22 16:55:45 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,27 @@ void	free_s(char **res)
 	free(res);
 }
 
-void	for_exit(t_list *a)
+void	for_exit(t_stack *a)
 {
 	write(2, "Error\n", 6);
-	ft_lstclear(&a);
+	lstclear(&a);
 	exit(1);
+}
+
+int	is_sorted(t_stack **a)
+{
+	t_stack	*tmp;
+	int		i;
+
+	i = 0;
+	tmp = *a;
+	while (tmp->next != NULL)
+	{
+		if (tmp->index > tmp->next->index)
+			i++;
+		tmp = tmp->next;
+	}
+	if (i != 0)
+		return (0);
+	return (1);
 }
