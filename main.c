@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:07 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/18 18:29:10 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/22 15:57:00 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ static int	is_acceptable(char *str)
 	return (0);
 }
 
-static t_list	*making_stack(char **res)
+static t_stack	*making_stack(char **res)
 {
 	long	val;
-	t_list	*a;
-	t_list	*node;
+	t_stack	*a;
+	t_stack	*node;
 
 	a = NULL;
 	while (*res)
@@ -79,10 +79,10 @@ static t_list	*making_stack(char **res)
 		val = ft_atoi(*res);
 		if (val > 2147483647 || val < -2147483648)
 			for_exit(a);
-		node = ft_lstnew(val);
+		node = lstnew(val);
 		if (!node)
 			for_exit(a);
-		ft_lstadd_back(&a, node);
+		lstadd_back(&a, node);
 		res++;
 	}
 	return (a);
@@ -90,8 +90,8 @@ static t_list	*making_stack(char **res)
 
 int	main(int ac, char **av)
 {
-	t_list	*a;
-	t_list	*b;
+	t_stack	*a;
+	t_stack	*b;
 	char	**res;
 
 	b = NULL;
@@ -107,6 +107,6 @@ int	main(int ac, char **av)
 	if (ac == 2 && ft_strchr(av[1], ' '))
 		free_s(res);
 	sorting(&a, &b);
-	ft_lstclear(&a);
+	lstclear(&a);
 	return (0);
 }
