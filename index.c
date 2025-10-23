@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:17 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/22 15:54:56 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/18 18:32:45 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static void	in_place_sort(int size, int *arr)
 	}
 }
 
-static void	arr_to_idx(int size, int *arr, t_stack **stack)
+static void	arr_to_idx(int size, int *arr, t_list **stack)
 {
 	int		i;
-	t_stack	*tmp;
+	t_list	*tmp;
 
 	tmp = (*stack);
 	while (tmp)
@@ -58,11 +58,11 @@ static void	arr_to_idx(int size, int *arr, t_stack **stack)
 	}
 }
 
-void	indexing(t_stack **stack, int size)
+void	indexing(t_list **stack, int size)
 {
 	int		*arr;
 	int		i;
-	t_stack	*tmp;
+	t_list	*tmp;
 
 	arr = malloc(size * sizeof(int));
 	if (!arr)
