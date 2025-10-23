@@ -36,6 +36,8 @@ static char	**args(int ac, char **av)
 {
 	char	**res;
 
+	if (is_acceptable_str(av[1]))
+		return (NULL);	
 	if (ac == 2 && ft_strchr(av[1], ' '))
 		res = ft_split(av[1], ' ');
 	else
@@ -74,8 +76,6 @@ static t_stack	*making_stack(char **res)
 	a = NULL;
 	while (*res)
 	{
-		if (!is_acceptable(*res))
-			for_exit(a);
 		val = ft_atoi(*res);
 		if (val > 2147483647 || val < -2147483648)
 			for_exit(a);
@@ -83,6 +83,8 @@ static t_stack	*making_stack(char **res)
 		if (!node)
 			for_exit(a);
 		lstadd_back(&a, node);
+		if (!is_acceptable(*res))
+			for_exit(a);
 		res++;
 	}
 	return (a);

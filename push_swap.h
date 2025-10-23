@@ -37,6 +37,7 @@ void	rrb(t_stack **rr_b);
 void	rrr(t_stack **rr_a, t_stack **rr_b);
 
 int		main(int ac, char **av);
+int	is_acceptable_str(char *str);
 void	free_s(char **res);
 void	for_exit(t_stack *a);
 

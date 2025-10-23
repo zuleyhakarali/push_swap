@@ -7,24 +7,23 @@ SRC = main.c utils.c little_sort.c op_push.c op_rotate.c op_rewrotate.c\
 
 OBJS = $(SRC:.c=.o)
 
-LIB_DIR = ../libft
-LIB = $(LIB_DIR)/libft.a
+LIB = libft/libft.a
 
 all: $(LIB) $(NAME)
-
-$(LIB):
-	make -C $(LIB_DIR)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIB) -o $(NAME)
 
+$(LIB):
+	make -C libft
+
 clean:
 	rm -f $(OBJS)
-	make -C $(LIB_DIR) clean
+	make -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIB_DIR) fclean
+	make -C libft fclean
 
 re: fclean all
 

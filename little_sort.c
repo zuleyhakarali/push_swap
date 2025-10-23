@@ -94,12 +94,12 @@ void	sorting(t_stack **a, t_stack **b)
 	if (is_sorted(a))
 		return ;
 	else if (i == 1)
-		exit(0);
+		return ;
 	else if (i == 2)
 	{
 		if ((*a)->content > (*a)->next->content)
 			sa(a);
-		exit(0);
+		return ;
 	}
 	else if (i == 3)
 		for_three(a);

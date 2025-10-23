@@ -34,6 +34,32 @@ void	for_exit(t_stack *a)
 	exit(1);
 }
 
+int	is_acceptable_str(char *str)
+{
+	int	i;
+	int digit;
+
+	i = 0;
+	digit = 0;
+	while (str[i])
+	{
+		if (str[i] == '-' || str[i] == '+')
+			i++;
+		else if (str[i] >= '0' && str[i] <= '9')
+		{
+			digit++;
+			i++;
+		}
+		else if (str[i] == ' ')
+			i++;
+		else
+			return(1);
+	}
+	if (digit > 10)
+		return (1);
+	return (0);
+}
+
 int	is_sorted(t_stack **a)
 {
 	t_stack	*tmp;
