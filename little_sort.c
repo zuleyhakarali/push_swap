@@ -6,13 +6,13 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:13 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/18 18:32:29 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/22 17:09:56 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	for_three(t_list **a)
+void	for_three(t_stack **a)
 {
 	long	fir;
 	long	sec;
@@ -21,10 +21,7 @@ void	for_three(t_list **a)
 	fir = (*a)->content;
 	sec = (*a)->next->content;
 	thi = (*a)->next->next->content;
-	
-	if (thi > sec && sec > fir)
-		return ;
-	else if (fir > sec && sec > thi)
+	if (fir > sec && sec > thi)
 	{
 		sa(a);
 		rra(a);
@@ -42,12 +39,12 @@ void	for_three(t_list **a)
 	}
 }
 
-int	find_min_idx(t_list **a)
+int	find_min_idx(t_stack **a)
 {
 	int		i;
 	int		idx;
 	long	min;
-	t_list	*tmp;
+	t_stack	*tmp;
 
 	i = 0;
 	idx = 0;
@@ -66,10 +63,10 @@ int	find_min_idx(t_list **a)
 	return (idx);
 }
 
-static void	for_four(t_list **a, t_list **b, int i)
+static void	for_four(t_stack **a, t_stack **b, int i)
 {
 	int	min;
-	int res;
+	int	res;
 
 	min = find_min_idx(a);
 	if (min <= i / 2)
@@ -88,12 +85,15 @@ static void	for_four(t_list **a, t_list **b, int i)
 	pa(a, b);
 }
 
-void	sorting(t_list **a, t_list **b)
+void	sorting(t_stack **a, t_stack **b)
 {
 	int	i;
 
-	i = ft_lstsize(*a);
-	if (i == 1)
+	i = lstsize(*a);
+	indexing(a, i);
+	if (is_sorted(a))
+		return ;
+	else if (i == 1)
 		exit(0);
 	else if (i == 2)
 	{
