@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:49:47 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/24 13:57:16 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/24 19:19:27 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,27 @@ int	is_acceptable_str(char *str)
 	int	digit;
 
 	i = 0;
-	digit = 0;
 	while (str[i])
 	{
+		digit = 0;
 		if (str[i] == '-' || str[i] == '+')
 			i++;
 		else if (str[i] >= '0' && str[i] <= '9')
 		{
-			digit++;
+			while (str[digit] >= '0' && str[digit] <= '9')
+			{
+				if (digit > 10)
+					return (0);
+				digit++;
+			}
 			i++;
 		}
 		else if (str[i] == ' ')
 			i++;
 		else
-			return (1);
+			return (0);
 	}
-	if (digit > 10)
-		return (1);
-	return (0);
+	return (1);
 }
 
 int	is_sorted(t_stack **a)
