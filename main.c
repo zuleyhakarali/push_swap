@@ -41,7 +41,11 @@ static char	**args(int ac, char **av)
 	if (!is_acceptable_str(av[1]))
 		return (NULL);
 	if (ac == 2 && ft_strchr(av[1], ' '))
+	{
 		res = ft_split(av[1], ' ');
+		is_acceptable_for_int(res);
+		return (NULL);
+	}
 	else
 		res = &av[1];
 	if (!repeating_numbers(res))
@@ -79,8 +83,6 @@ static t_stack	*making_stack(char **res)
 	while (*res)
 	{
 		val = ft_atoi(*res);
-		if (val > 2147483647 || val < -2147483648)
-			for_exit(a);
 		node = lstnew(val);
 		if (!node)
 			for_exit(a);
@@ -108,6 +110,11 @@ int	main(int ac, char **av)
 		exit(1);
 	}
 	a = making_stack(res);
+	//if (!a)
+//	{
+		//free_s(res);
+		//for_exit(a);
+	//}
 	if (ac == 2 && ft_strchr(av[1], ' '))
 		free_s(res);
 	sorting(&a, &b);

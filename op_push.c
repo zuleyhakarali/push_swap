@@ -34,3 +34,23 @@ void	pb(t_stack **b, t_stack **stack_a)
 	push(b, stack_a);
 	write(1, "pb\n", 3);
 }
+
+void is_acceptable_for_int(char **s)
+{
+	long val;
+	int i;
+
+	i = 0;
+	while(*s)
+	{
+		val = ft_atoi(*s);
+		if (val > 2147483647 || val < -2147483648)
+		{
+			i++;
+			break;
+		}
+		s++;
+	}
+	if (i == 1)
+		free_s(s);
+}

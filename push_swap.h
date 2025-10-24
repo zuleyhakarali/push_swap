@@ -33,6 +33,7 @@ void	pb(t_stack **b, t_stack **stack_a);
 int		main(int ac, char **av);
 int		is_only_space(char *s);
 int		is_acceptable_str(char *str);
+void	is_acceptable_for_int(char **s);
 void	free_s(char **res);
 void	for_exit(t_stack *a);
 
