@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:49:47 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/22 16:55:45 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/24 13:57:16 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,22 @@ void	for_exit(t_stack *a)
 	exit(1);
 }
 
+int	is_only_space(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] == ' ')
+		i++;
+	if (!s[i])
+		return (1);
+	return (0);
+}
+
 int	is_acceptable_str(char *str)
 {
 	int	i;
-	int digit;
+	int	digit;
 
 	i = 0;
 	digit = 0;
@@ -53,7 +65,7 @@ int	is_acceptable_str(char *str)
 		else if (str[i] == ' ')
 			i++;
 		else
-			return(1);
+			return (1);
 	}
 	if (digit > 10)
 		return (1);

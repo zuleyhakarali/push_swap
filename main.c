@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:07 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/22 15:57:00 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/24 14:53:30 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ static char	**args(int ac, char **av)
 {
 	char	**res;
 
+	if (is_only_space(av[1]))
+		return (NULL);
 	if (is_acceptable_str(av[1]))
-		return (NULL);	
+		return (NULL);
 	if (ac == 2 && ft_strchr(av[1], ' '))
 		res = ft_split(av[1], ' ');
 	else
@@ -78,7 +80,10 @@ static t_stack	*making_stack(char **res)
 	{
 		val = ft_atoi(*res);
 		if (val > 2147483647 || val < -2147483648)
+		{
 			for_exit(a);
+			write(1, "1", 1);
+		}
 		node = lstnew(val);
 		if (!node)
 			for_exit(a);
