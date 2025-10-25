@@ -2,7 +2,7 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c utils.c little_sort.c op_push.c\
+SRC = main.c utils.c little_sort.c operations2.c\
 	operations.c big_sort.c index.c for_little.c libft.c
 
 OBJS = $(SRC:.c=.o)
