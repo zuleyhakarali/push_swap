@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:07 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/25 13:16:06 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/25 14:41:57 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ static t_stack	*making_stack(char **res)
 	while (*res)
 	{
 		val = ft_atoi(*res);
-		if (val > 2147483647 || val < -2147483648)
-			for_exit(a);
 		node = lstnew(val);
 		if (!node)
 			for_exit(a);
