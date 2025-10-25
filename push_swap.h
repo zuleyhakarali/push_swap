@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:49:42 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/24 19:13:11 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:01:57 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	pb(t_stack **b, t_stack **stack_a);
 int		main(int ac, char **av);
 int		is_only_space(char *s);
 int		is_acceptable_str(char *str);
-void	is_acceptable_for_int(char **s);
+int		is_acceptable_for_int(char **s);
 void	free_s(char **res);
 void	for_exit(t_stack *a);
 

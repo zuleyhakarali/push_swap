@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:49:16 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/24 19:08:34 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/25 13:16:54 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,23 @@ void	pb(t_stack **b, t_stack **stack_a)
 	write(1, "pb\n", 3);
 }
 
-void is_acceptable_for_int(char **s)
+int	is_acceptable_for_int(char **s)
 {
-	long val;
-	int i;
+	long	val;
+	int		i;
 
 	i = 0;
-	while(*s)
+	while (*s)
 	{
 		val = ft_atoi(*s);
 		if (val > 2147483647 || val < -2147483648)
 		{
 			i++;
-			break;
+			break ;
 		}
 		s++;
 	}
 	if (i == 1)
-		free_s(s);
+		return (0);
+	return (1);
 }
