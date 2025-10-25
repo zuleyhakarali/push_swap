@@ -6,7 +6,7 @@
 /*   By: zkarali <zkarali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 12:50:13 by zkarali           #+#    #+#             */
-/*   Updated: 2025/10/22 17:09:56 by zkarali          ###   ########.fr       */
+/*   Updated: 2025/10/25 15:11:46 by zkarali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	for_three(t_stack **a)
 	}
 }
 
-int	find_min_idx(t_stack **a)
+static int	find_min_idx(t_stack **a)
 {
 	int		i;
 	int		idx;
